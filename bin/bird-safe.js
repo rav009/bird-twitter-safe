@@ -110,23 +110,12 @@ if (!authToken || !ct0) {
     process.exit(1);
 }
 
-let finalArgs = [...args];
-
-if (authToken && ct0) {
-    // Prepend auth flags
-    // We need to insert them before the subcommand arguments but after global flags if any
-    // Simplest approach: prepend to the whole list, bird usually handles flags anywhere or before subcommand
-    // Bird expects: bird [global-opts] <command> [command-opts]
-    // Let's insert right before the 'action' index to be safe, or just prepend if bird is flexible.
-    // Bird CLI usually accepts flags before the command.
-    finalArgs = ['--auth-token', authToken, '--ct0', ct0, ...args];
-} else {
-    logError("Missing required credentials: BIRD_AUTH_TOKEN or BIRD_CT0.");
-}
+const commandParts = args.map(a => a.includes(' ') ? `'${a}'` : a);
+const cmd = `bird ${commandParts.join(' ')} --auth-token '${authToken}' --ct0 '${ct0}'`;
 
 // Execute bird
 try {
-    execSync(`bird ${finalArgs.join(' ')}`, { stdio: 'inherit' });
+    execSync(cmd, { stdio: 'inherit', shell: true });
 } catch (e) {
     console.error('Bird command failed');
     process.exit(1);
