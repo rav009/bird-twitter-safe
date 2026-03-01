@@ -1,4 +1,4 @@
-<img width="347" height="63" alt="image" src="https://github.com/user-attachments/assets/4d7f90d7-7e8f-47c5-9fc7-eeccac4f7ed7" /># Bird Twitter Safe Skill for Openclaw
+# Bird Twitter Safe Skill for Openclaw
 
 This skill provides a secured, read-only interface to Twitter/X using the `bird` CLI. It is designed for agents that need to **monitor** or **research** Twitter without the risk of accidentally posting, liking, or following users.
 
