@@ -20,3 +20,6 @@ This skill provides a secured, read-only interface to Twitter/X using the `bird`
 - Tell the agent about this skill.
 - Give the agent the twitter cookie token and ct0 and ask the agent to finish the configuration.
 - Raise request to your openclaw agent to fetch information from X.com(Twitter)
+
+# Credit
+- https://github.com/jawond/bird
